@@ -1,0 +1,22 @@
+class Solution(object):
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
+        current_sum = 0
+        max_sum = float('-inf')
+        
+        if len(nums) == 1:
+            if nums[0] < 0:
+                return nums[0]
+        
+        for num in nums:
+            current_sum = max(num , current_sum + num)
+            max_sum = max(current_sum, max_sum)
+            print(current_sum, max_sum)
+            
+        print(max_sum)
+        
+        return max_sum
