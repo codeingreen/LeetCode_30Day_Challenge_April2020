@@ -1,0 +1,32 @@
+class Solution:
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        
+        if (root is None) or (root.left is None and root.right is None):
+            return 0
+        
+        def height(node):
+            
+            if not node:
+                return 0
+            
+            l = height(node.left)
+            r = height(node.right)
+            
+            # to add root
+            return max(l, r)+ 1
+        
+        def diameter(node):
+            
+            if not node:
+                return 0
+            
+            left = height(node.left)
+            right = height(node.right)
+            
+            left_diameter = diameter(node.left)
+            right_diameter = diameter(node.right)
+            
+            return max(left+right, max(left_diameter, right_diameter))
+        
+        return diameter(root)
+        
